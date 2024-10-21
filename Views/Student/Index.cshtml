@@ -1,0 +1,51 @@
+﻿@model IEnumerable<studentInformation.Models.Student>
+
+
+<h2>Student List</h2>
+
+<style>
+    .styled-table {
+        border: 1px solid white;
+        border-collapse: collapse;
+    }
+
+        .styled-table th, .styled-table td {
+            background-color: #96D4D4;
+            border: 1px solid white; 
+        }
+</style>
+
+
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Date of Birth</th>
+            <th>Date of Joining</th>
+            <th>Courses</th>
+            <th>Teachers</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.StudentName</td>
+                <td>@student.DOB.ToShortDateString()</td>
+                <td>@student.DOJ.ToShortDateString()</td>
+                <td>
+                    @foreach (var course in student.Courses)
+                    {
+                        <p>@course.CourseName</p>
+                    }
+                </td>
+                <td>
+                    @foreach (var course in student.Courses)
+                    {
+                        <p>@course.Teacher.TeacherName</p>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
